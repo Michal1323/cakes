@@ -3,7 +3,7 @@ import {Link}             from '@reach/router';
 import urlToCurrentDomain from '../lib/urlToCurrentDomain';
 import * as Config        from '../config.json'
 
-class Cake extends React.Component {
+class Basketball extends React.Component {
 
   // #######################################################
   // # Local state
@@ -17,40 +17,40 @@ class Cake extends React.Component {
 
   render() {
 
-    if (!this.state.cake && this.state.cakeLoaded === true) {
+    if (!this.state.basketball && this.state.basketballLoaded === true) {
       return (
-        <p>Error loading cakes. Try again later.</p>
+        <p>Error loading basketballs. Try again later.</p>
       );
-    } else if (!this.state.cake) {
+    } else if (!this.state.basketball) {
       return (
-        <p>Loading cakes...</p>
+        <p>Loading basketballs...</p>
       );
-    } else if (this.state.cake.length === 0) {
+    } else if (this.state.basketball.length === 0) {
       return (
-        <p>Sorry, no cakes are available</p>
+        <p>Sorry, no basketballs are available</p>
       );
     } else {
       return (
         <div>
-          <h1>{this.state.cake.title}</h1>
-          <Link to='/'>Back to All cakes</Link>
+          <h1>{this.state.basketball.title}</h1>
+          <Link to='/'>Back to All basketballs</Link>
         </div>
       )
     }
   }
 
   componentDidMount() {
-    fetch(urlToCurrentDomain(`${Config.cakesAPI}/${this.props.cakeID}`))
+    fetch(urlToCurrentDomain(`${Config.basketballsAPI}/${this.props.basketballID}`))
       .then (res  => res.json())
       .then (json => {
-        this.setState({cake       : json});
-        this.setState({cakeLoaded : true});
+        this.setState({basketball       : json});
+        this.setState({basketballLoaded : true});
       })
       .catch(err => {
-        this.setState({cakeLoaded: true});
+        this.setState({basketballLoaded: true});
       });
   }
 
 }
 
-export default Cake;
+export default Basketball;

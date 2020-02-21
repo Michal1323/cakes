@@ -1,7 +1,7 @@
 const express  = require('express');
 const router   = express.Router();
 const mongoose = require('mongoose'); // using to generate ObjectIDs
-const Cake   = require('../models/Cake').Cake;
+const Basketball   = require('../models/Basketball').Basketball;
 
 /**
  * Functionality for this route:
@@ -15,9 +15,9 @@ const Cake   = require('../models/Cake').Cake;
 // GET an array of all Cakes
 router.get('/', (req, res) => {
     return mongoose
-      .model('Cake')
+      .model('Basketball')
       .find({})
-      .then (cakes => res.json(cakes))
+      .then (basketballs => res.json(basketballs))
       .catch(err => res
         .status(500)
         .json({ok: false})
@@ -27,9 +27,9 @@ router.get('/', (req, res) => {
   // GET a single cake by ID
 router.get('/:id([0-9a-fA-F]{24})', (req, res) => {
   return mongoose
-    .model('Cake')
+    .model('Basketball')
     .findOne({_id: req.params.id})
-    .then (cake => res.json(cake))
+    .then (basketball => res.json(basketball))
     .catch(err => res
       .status(500)
       .json({ok: false})
@@ -38,12 +38,12 @@ router.get('/:id([0-9a-fA-F]{24})', (req, res) => {
 
 // POST Create a new cake
 router.post('/', (req, res) => {
-  return new Cake({
+  return new Basketball({
     title     : req.body.title,
   })
   .save()
-  .then (cake => Cake.populate(cake, {path: '_id'}))
-  .then (cake => res.json(cake))
+  .then (basketball => Basketball.populate(basketball, {path: '_id'}))
+  .then (basketball => res.json(basketball))
   .catch(err => res
     .status(400)
     .json({ok: false, error: err.message})
@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 
 // DELETE Delete a topic with a given ID
 router.delete('/:id([0-9a-fA-F]{24})', (req, res) => {
-  return Cake
+  return Basketball
     .deleteOne({_id: req.params.id})
     .then (() => res.json({'ok': true}))
     .catch(err => res
@@ -63,7 +63,7 @@ router.delete('/:id([0-9a-fA-F]{24})', (req, res) => {
 
 // PUT Update a cake
 router.put('/:id([0-9a-fA-F]{24})', (req, res) => {
-  return Cake
+  return Basketball
     .findOneAndUpdate(
       {_id: req.params.id},
       {$set: {
@@ -71,8 +71,8 @@ router.put('/:id([0-9a-fA-F]{24})', (req, res) => {
       }},
       {new: true}
     )
-    .then (cake => Cake.populate(cake, {path: '_id'}))
-    .then (cake => res.json(cake))
+    .then (basketball => Basketball.populate(basketball, {path: '_id'}))
+    .then (basketball => res.json(basketball))
     .catch(err => res
       .status(500)
       .json({ok: false})
