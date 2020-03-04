@@ -51,11 +51,11 @@ class AddBasketball extends React.Component {
             </div> */}
 
             <div>
-              <input type='submit' value='Add Basketball' />
+              <input type='submit' value='Add Player' />
             </div>
 
           </form>
-          <Link to='/'>Back to All basketballs</Link>
+          <Link to='/'>Back to All Players</Link>
         </div>
       );
     }

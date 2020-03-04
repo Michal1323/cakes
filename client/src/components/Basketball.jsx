@@ -19,21 +19,21 @@ class Basketball extends React.Component {
 
     if (!this.state.basketball && this.state.basketballLoaded === true) {
       return (
-        <p>Error loading basketballs. Try again later.</p>
+        <p>Error loading Players. Try again later.</p>
       );
     } else if (!this.state.basketball) {
       return (
-        <p>Loading basketballs...</p>
+        <p>Loading Playerss...</p>
       );
     } else if (this.state.basketball.length === 0) {
       return (
-        <p>Sorry, no basketballs are available</p>
+        <p>Sorry, no Players are available</p>
       );
     } else {
       return (
         <div>
           <h1>{this.state.basketball.title}</h1>
-          <Link to='/'>Back to All basketballs</Link>
+          <Link to='/'>Back to All Players</Link>
         </div>
       )
     }
