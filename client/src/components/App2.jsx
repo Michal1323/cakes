@@ -1,8 +1,5 @@
 import React    from 'react';
-import {Router} from "@reach/router";
-import Basketballs   from './Basketballs';
-import Basketball    from './Basketball';
-import AddBasketball from './AddBasketball';
+import {Router2} from "@reach/router";
 import Allstars   from './Allstars';
 import Allstar    from './Allstar';
 import AddAllstar from './AddAllstar';
@@ -11,27 +8,20 @@ import Footere       from './Footer';
 import Navrbar from './NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class App extends React.Component {
+class App2 extends React.Component {
 
   render() {
     return (
       <div>
        <Navrbar/>
        <Headere/>
-        <Router>
+        <Router2>
 
-          <Basketballs   path='/' />
-          <Basketball    path='/basketball/:basketballID' />
-          <AddBasketball path='/add-basketball/' />
-          
-        </Router>
-        <Router>
-
-          <Allstars   path='/' />
+          <Allstars   path='/allstars' />
           <Allstar    path='/allstar/:allstarID' />
           <AddAllstar path='/add-allstar/' />
           
-        </Router>
+        </Router2>
         <Footere/>
       </div>
     );
@@ -39,4 +29,4 @@ class App extends React.Component {
 
 }
 
-export default App;
+export default App2;

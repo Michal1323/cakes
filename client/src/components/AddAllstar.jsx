@@ -1,9 +1,9 @@
 import React              from 'react';
 import {navigate, Link}   from '@reach/router';
 import urlToCurrentDomain from '../lib/urlToCurrentDomain';
-import * as Config        from '../config.json'
+import * as Config        from '../config2.json'
 
-class AddBasketball extends React.Component {
+class AddAllstar extends React.Component {
 
   // #######################################################
   // # Local state
@@ -23,29 +23,29 @@ class AddBasketball extends React.Component {
       return (
         <div>
           <h1>Error</h1>
-          <p>Sorry, there was an error creating the basketball. The error was: {this.state.reportedError || 'Unknown'}</p>
+          <p>Sorry, there was an error creating the allstar. The error was: {this.state.reportedError || 'Unknown'}</p>
           <a href='#' onClick={this.resetForRetry.bind(this)}>Try again</a>&nbsp;|&nbsp;
-          <Link to='/'>Back to All basketballs</Link>
+          <Link to='/'>Back to All allstars</Link>
         </div>
       );
     } else if (this.state.processingAdd) {
       return (
-        <div>Adding basketball...</div>
+        <div>Adding allstar...</div>
       );
     } else {
       return (
         <div>
-          <h1>Add a basketball</h1>
+          <h1>Add a allstar</h1>
           <form onSubmit={this.handleSubmit.bind(this)}>
 
             <div>
-              <label>basketball Name:
+              <label>allstar Name:
                 <input type='' value={this.state.name} onChange={this.handleNameUpdate.bind(this)} />
               </label>
             </div>
 
             {/* <div>
-              <label>basketball Content:
+              <label>allstar Content:
                 <textarea value={this.state.content} onChange={this.handleContentUpdate.bind(this)}></textarea>
               </label>
             </div> */}
@@ -75,7 +75,7 @@ class AddBasketball extends React.Component {
     e.preventDefault();
 
     // Perform a POST call for the new data
-    fetch(urlToCurrentDomain(`${Config.basketballsAPI}`), {
+    fetch(urlToCurrentDomain(`${Config.allstarsAPI}`), {
       method : 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ class AddBasketball extends React.Component {
         }
         return res.json();
       })
-      .then (json => navigate(`/basketball/${json._id}`))
+      .then (json => navigate(`/allstar/${json._id}`))
       .catch(err => {
         this.setState({reportedError: err.message || 'Unknown'});
       })
@@ -104,9 +104,9 @@ class AddBasketball extends React.Component {
   }
 
   componentDidMount() {
-    // this.getComments(this.props.basketballID);
+    // this.getComments(this.props.allstarID);
   }
 
 }
 
-export default AddBasketball;
+export default AddAllstar;

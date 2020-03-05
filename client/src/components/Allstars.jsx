@@ -1,9 +1,9 @@
 import React              from 'react';
 import urlToCurrentDomain from '../lib/urlToCurrentDomain';
 import {Link}             from '@reach/router';
-import * as Config        from '../config.json'
+import * as Config        from '../config2.json'
 
-class Basketballs extends React.Component {
+class Allstars extends React.Component {
 
   // #######################################################
   // # Local state
@@ -17,15 +17,15 @@ class Basketballs extends React.Component {
 
   render() {
 
-    if (!this.state.basketballs && this.state.basketballsLoaded === true) {
+    if (!this.state.allstars && this.state.allstarsLoaded === true) {
       return (
         <p>Error loading Players. Try again later.</p>
       );
-    } else if (!this.state.basketballs) {
+    } else if (!this.state.allstars) {
       return (
         <p>Loading players...</p>
       );
-    } else if (this.state.basketballs.length === 0) {
+    } else if (this.state.allstars.length === 0) {
       return (
         <p>Sorry, no players are available</p>
       );
@@ -34,29 +34,29 @@ class Basketballs extends React.Component {
         <div>
           <h1>All Players in the database</h1>
           <ul>
-            {this.state.basketballs.map(basketball => (
-              <li key={`basketball_${basketball._id}`}><Link to={`/basketball/${basketball._id}`}>{basketball.title}</Link></li>
+            {this.state.allstars.map(allstar => (
+              <li key={`allstar_${allstar._id}`}><Link to={`/allstar/${allstar._id}`}>{allstar.name}{allstar.appearances}</Link></li>
             ))}
           </ul>
-          <p><Link to='/add-basketball'>Add a new Player</Link></p>
+          <p><Link to='/add-allstar'>Add a new Player</Link></p>
         </div>
       )
     }
   }
 
   componentDidMount() {
-    fetch(urlToCurrentDomain(Config.basketballsAPI))
+    fetch(urlToCurrentDomain(Config.allstarsAPI))
       .then (res  => res.json())
       .then (json => {
-        this.setState({basketballs       : json});
-        this.setState({basketballsLoaded : true});
-      })
+        this.setState({allstars       : json});
+        this.setState({allstarsLoaded : true});
+      })sx  
       .catch(err => {
-        this.setState({basketballsLoaded: true});
+        this.setState({allstarsLoaded: true});
       });
   }
 
 }
 
-export default Basketballs;
+export default Allstars;
 
